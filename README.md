@@ -20,5 +20,5 @@ python main.py -a ba_resnet50 {datapath_of_ImageNet} --lr 0.1 --scheduler cos -b
 
 If you want to train the BA-Net under the backbone architecture of EfficientNet, use the code ↓.
 ```Python
-nohup python main_EfficientNet.py -a efficientnet-b0 ~/student/dataset/ImageNet/
+nohup python main_EfficientNet.py -a efficientnet-b0 {datapath_of_ImageNet}
 ```
