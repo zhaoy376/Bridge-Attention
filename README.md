@@ -1,7 +1,7 @@
 # Bridge-Attention
 The code for the paper 'BA-Net: Bridge Attention for Deep Convolutional Neural Networks'
-## Descripti
-'./model' contains the .py files of various backbones architectures, the BA module and the SE module. 
+## Description
+'./model' contains the .py files of various backbones architectures, the BA module and the SE module.   
 './results' saves the checkpoints and log files. 
 ## Usage
 ### Training
