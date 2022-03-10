@@ -30,7 +30,7 @@ class MemoryEfficientSwish(nn.Module):
     def forward(self, x):
         return SwishImplementation.apply(x)
 
-class BA_module_resnet(nn.Module):
+class BA_module_resnet(nn.Module): # BA_module for the backbones of ResNet and ResNext
     def __init__(self, pre_channels, cur_channel, reduction=16):  
         super(BA_module_resnet, self).__init__()
         self.pre_fusions = nn.ModuleList(
@@ -52,7 +52,7 @@ class BA_module_resnet(nn.Module):
             nn.Sigmoid()
         )
 
-    def forward(self, pre_layers, cur_layer, Gate, pre_block=None):
+    def forward(self, pre_layers, cur_layer):
         b, cur_c, _, _ = cur_layer.size()
 
         pre_fusions = [self.pre_fusions[i](pre_layers[i].view(b, -1)) for i in range(len(pre_layers))]
