@@ -24,7 +24,7 @@ class BABasicBlock(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = conv3x3(planes, planes, 1)
         self.bn2 = nn.BatchNorm2d(planes)
-        self.ba = BA_module_resnet_in([planes], planes, reduction)
+        self.ba = BA_module_resnet([planes], planes, reduction)
         self.downsample = downsample
         self.stride = stride
         self.feature_extraction = nn.AdaptiveAvgPool2d(1)
@@ -66,7 +66,7 @@ class BABottleneck(nn.Module):
         self.conv3 = nn.Conv2d(planes, planes * 4, kernel_size=1, bias=False)
         self.bn3 = nn.BatchNorm2d(planes * 4)
         self.relu = nn.ReLU(inplace=True)
-        self.ba = BA_module_resnet_in([planes, planes], 4*planes, reduction)
+        self.ba = BA_module_resnet([planes, planes], 4*planes, reduction)
         self.downsample = downsample
         self.stride = stride
         self.feature_extraction = nn.AdaptiveAvgPool2d(1)
@@ -87,7 +87,6 @@ class BABottleneck(nn.Module):
         out = self.conv3(out)
         out = self.bn3(out)
         F3 = self.feature_extraction(out)
-        #S_features = [S_1, S_2, S_ex, S_3]
         att = self.ba([F1, F2], F3)
         out = out * att
 
